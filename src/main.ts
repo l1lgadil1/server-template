@@ -15,9 +15,14 @@ async function bootstrap() {
     .setTitle('API DOCS')
     .setDescription('docs description')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document, {
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+  });
 
   app.enableCors({ credentials: true, origin: true });
 
