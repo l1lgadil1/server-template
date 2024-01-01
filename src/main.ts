@@ -7,15 +7,14 @@ import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: false });
 
-  // share static
+  // make static visible
   app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
   // swagger configure
   const config = new DocumentBuilder()
-    .setTitle('Server ')
-    .setDescription('Server API description')
+    .setTitle('API DOCS')
+    .setDescription('docs description')
     .setVersion('1.0')
-    .addTag('cats')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
