@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
+import { CreateUserDto } from '../users/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -13,5 +14,16 @@ export class AuthService {
       return result;
     }
     return null;
+  }
+
+  async register(dto: CreateUserDto) {
+    try {
+      const userData = await this.usersService.create(dto);
+
+      return userData;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
   }
 }
