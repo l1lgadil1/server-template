@@ -7,6 +7,7 @@ import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import * as process from 'process';
 
 @Module({
   imports: [
@@ -17,8 +18,8 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         return {
-          sercet: configService.get('SECRET_KEY'),
-          signOptions: { expiresIn: configService.get('EXPIRES_IN') },
+          secret: configService.get(process.env.SECRET_KEY),
+          signOptions: { expiresIn: configService.get(process.env.EXPIRES_IN) },
         };
       },
     }),
