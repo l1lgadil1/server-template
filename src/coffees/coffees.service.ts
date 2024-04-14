@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
-import { UpdateCoffeDto } from './dto/update-coffe.dto';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Injectable()
 export class CoffeesService {
@@ -30,7 +30,7 @@ export class CoffeesService {
     }
     return coffee;
   }
-  update(id: string, body: UpdateCoffeDto) {
+  update(id: string, body: UpdateCoffeeDto) {
     const coffee = this.coffees.find((i) => i.id === +id);
     if (!coffee) {
       throw new NotFoundException(`Coffee with id ${id} not found`);
