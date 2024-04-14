@@ -43,6 +43,7 @@ export class CoffeesService {
   }
   create(body: CreateCoffeeDto) {
     const index = this.coffees.length;
-    return this.coffees.push({ ...body, id: index });
+    this.coffees.push({ ...body, id: index });
+    return body;
   }
 }
